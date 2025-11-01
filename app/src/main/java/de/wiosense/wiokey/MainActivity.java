@@ -42,6 +42,7 @@ import de.wiosense.wiokey.ui.WioNotificationManager;
 import de.wiosense.wiokey.ui.fragments.HomeFragment;
 import de.wiosense.wiokey.utils.DeviceManagementEvent;
 import de.wiosense.wiokey.utils.FirebaseManager;
+import de.wiosense.wiokey.BuildConfig;
 
 import static de.wiosense.wiokey.ui.WioNotificationManager.CHANNEL_HIGH;
 import static de.wiosense.wiokey.ui.WioNotificationManager.CHANNEL_LOW;

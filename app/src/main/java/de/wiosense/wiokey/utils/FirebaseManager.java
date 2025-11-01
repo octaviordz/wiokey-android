@@ -12,8 +12,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -65,15 +63,15 @@ public class FirebaseManager {
         boolean optout_notifications = appPreferences.getBoolean(FIREBASE_OPTOUT_NOTIFICATIONS,false);
 
         FirebaseApp.initializeApp(ctx);
-        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
             @Override
-            public void onComplete(@NonNull Task<InstanceIdResult> task) {
+            public void onComplete(@NonNull Task<String> task) {
                 if(!task.isSuccessful()){
                     Log.e(TAG,"Firebase Get InstanceId failed");
                     return;
                 }
-                String token = task.getResult().getToken();
-                Log.d(TAG,"Firebase InstanceId: "+token);
+                String token = task.getResult();
+                Log.d(TAG,"Firebase token: "+token);
             }
         });
 
