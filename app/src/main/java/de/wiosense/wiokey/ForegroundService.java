@@ -40,7 +40,7 @@ import de.wiosense.wiokey.utils.UiUpdateEvent;
 
 import static android.app.Notification.DEFAULT_SOUND;
 import static android.app.Notification.DEFAULT_VIBRATE;
-import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
+import static android.app.PendingIntent.FLAG_MUTABLE;
 import static de.wiosense.wiokey.utils.FirebaseManager.EVENT_DEVICECONNECTED;
 
 public class ForegroundService extends Service {
@@ -144,7 +144,7 @@ public class ForegroundService extends Service {
         Log.d(TAG,"Starting Foreground - " + intent);
         createNotificationChannel();
         Intent notificationIntent = new Intent(this, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this,0, notificationIntent, FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this,0, notificationIntent, FLAG_MUTABLE);
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle(getString(R.string.notification_title_foregroundservice))
                 .setContentText(getString((R.string.notification_body_foregroundservice)))
@@ -211,7 +211,7 @@ public class ForegroundService extends Service {
 
     private void showRequestNotification(){
         Intent intent = new Intent(this, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this,0, intent, FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this,0, intent, FLAG_MUTABLE);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this,CHANNEL_ID)
                 .setSmallIcon(R.drawable.logo_small)
                 .setContentTitle(getString(R.string.notification_title_actionrequired))
